@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <title>淘宝购物车</title>
+    <style type="text/css">
+    *{margin:0;padding: 0}
+    #box1{
+    	width: 1000px;
+    	height: 500px;
+    	position: absolute;
+    	top: 50%;
+    	left: 50%;
+    	margin:-250px 0 0 -500px;
+       	}
+    .box2{
+    	width: 1000px;
+    	/*height: 400px;*/
+    	border:1px solid #44E4F4;
+    	border-top-width: 5px;
+    	background-color: #D9F6FC;
+    	border-collapse:collapse;
+    	text-align: center;
+    }
+    .box2 tr{
+    	height: 80px;
+    	border: 1px solid #44E4F4;
+    }
+    .box2 .count{
+    	width: 30px;
+    }
+    #box3{
+    	width: 1000px;
+    	height: 50px;
+    	border: 1px solid #D0C9C9;
+    	font-size: 18px;
+    	position: relative;
+    	line-height: 50px;
+    	margin-top:20px;
+    }
+    #box3 .all{
+    	width:100px;
+    	height: 50px;
+    	background-color: #FD0303 ;
+    	position: absolute;
+    	right: 0;
+    	top:0;
+    	text-align: center;
+    	font-size: 30px;
+    }
+    #box3 .money_all{
+    	position: absolute;
+    	top:0;
+    	right: 100px;
+    }
+    #box3 .count_all{
+    	position: absolute;
+    	top:0;
+    	right: 350px;
+    }
+    #box3 .count_all_num,.money{
+    	color:red;
+    	font-size: 30px;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="box1">
+        <table class="box2">
+            <thead>
+                <tr class="row1">
+                    <th>
+                        <input type="checkbox" class="check_all check">全选
+                    </th>
+                    <th>商品</th>
+                    <th>单价</th>
+                    <th>数量</th>
+                    <th>小计</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody class="box4">
+                <tr class="row2">
+                    <td>
+                        <input type="checkbox" class="check_one check">
+                    </td>
+                    <td class="cls2">Iphone 6S</td>
+                    <td class="price">5099.88</td>
+                    <td>
+                        <button  class="jian">-</button >
+                        <input type="text" value="1" class="count">
+                        <button  class="jia">+</button >
+                    </td>
+                    <td><span class="subtotal">5099.88</span></td>
+                    <td>
+                    	<span class="row_del">删除</span>
+                    </td>
+                </tr>
+                <tr class="row3">
+                    <td>
+                        <input type="checkbox" class="check_two check">
+                    </td>
+                    <td class="cls2">MacBook Air</td>
+                    <td class="price">1099.99</td>
+                    <td><button class="jian">-</button >
+                        <input type="text" value="1" class="count">
+                        <button  class="jia">+</button>
+                    </td>
+                    <td>
+                    	<span class="subtotal">1099.99</span>
+                    </td>
+                    <td>
+                    	<span class="row_del">删除</span>
+                    </td>
+                </tr>
+                <tr class="row4">
+                    <td>
+                        <input type="checkbox" class="check_three check">
+                    </td>
+                    <td class="cls2">Ipad mini2 银16g WLAN7.9英寸</td>
+                    <td class="price">6599.00</td>
+                    <td>
+                    	<button  class="jian">-</button >
+                        <input type="text" value="1" class="count">
+                        <button  class="jia">+</button >
+                    </td>
+                    <td><span class="subtotal">6599.00</span></td>
+                    <td>
+                    	<span class="row_del">删除</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" class="check_four check">
+                    </td>
+                    <td class="cls2">IWatch EXTS Min</td>
+                    <td class="price">9998.68</td>
+                    <td>	
+                    	<button  class="jian">-</button >
+                        <input type="text" value="1" class="count">
+                        <button  class="jia">+</button >
+                    </td>
+                    <td>
+                    	<span class="subtotal">9998.68</span>
+                    </td>
+                    <td>
+                    	<span class="row_del">删除</span>
+                   	</td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="box3">
+            <span><input type="checkbox"  class="check_all check">全选</span>
+            <span class="row_all_del">删除</span>
+            <div class="count_all">已选商品<span class="count_all_num">0</span>件</div>
+            <div class="money_all">合计：￥<span class="money">0.00</span></div>
+           <button class="all">结算</button>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var box2=document.getElementsByClassName('box2');
+    	var box4=document.getElementsByClassName("box4");
+        var tr=box2[0].children[1].rows;
+    	var price=document.getElementsByClassName("price");
+    	var checkAll=document.getElementsByClassName('check_all');
+    	var jia=document.getElementsByClassName('jia');
+    	var jian=document.getElementsByClassName('jian');
+    	var oCount=document.getElementsByClassName('count');
+    	var total=document.getElementsByClassName('subtotal');
+    	var check=document.getElementsByClassName("check");
+    	var box3=document.getElementById("box3");
+    	var count_all=document.getElementsByClassName('count_all_num');
+    	var money=document.getElementsByClassName("money");
+    	var all=document.getElementsByClassName('all');
+        var rd=document.getElementsByClassName('row_all_del');
+        //计算已选商品和合计
+    	function count_add() {
+					var d=0,
+						e=0;
+					for (var k = 0; k < tr.length; k++) {
+                        if (tr[k].getElementsByTagName("input")[0].checked) {
+    					   d+=parseInt(oCount[k].value);
+    					   e+=parseInt(total[k].innerHTML);
+                        }
+    				} 
+    				count_all[0].innerHTML=d; 
+    				money[0].innerHTML=e;
+    	}
+        //底部删除按钮
+        rd[0].onclick=function() {
+            for (var i = 0; i < tr.length; i++) {
+                if(tr[i].getElementsByTagName("input")[0].checked){
+                    box2[0].children[1].removeChild(tr[i]);
+                    count_add();
+                }
+            }
+        }
+        //复选框按钮
+        for (var i = 0; i < check.length; i++) {
+            check[i].onclick=function() {
+                if (this.className == "check_all check") {
+                    for (var j = 0; j < check.length; j++){
+                        check[j].checked = this.checked;
+                    }
+                }
+                if (this.checked == false) {
+                    for (var k = 0,len2 = checkAll.length; k < len2; k++){
+                        checkAll[k].checked = false;
+                    }
+                } 
+            count_add();             
+            }
+        }
+ 
+    	//计算产品数量
+    	for (var j = 0,len1=jia.length;j < len1; j++) {
+    		jia[j].index=j;
+    		jia[j].onclick=function() {
+    				var num=parseInt(oCount[this.index].value);
+    				num+=1;
+    				oCount[this.index].value=num;
+    				var a=parseInt(price[this.index].innerHTML);
+    				total[this.index].innerHTML=num*a;
+                    count_add();
+    		}
+            jian[j].index=j;
+            jian[j].onclick=function() {
+                    var num=parseInt(oCount[this.index].value);
+                    if (num>0) {
+                        num=num-1;
+                        oCount[this.index].value=num; 
+                        var b=parseInt(price[this.index].innerHTML);
+                        total[this.index].innerHTML=num*b;                                          
+                    }else{
+                        alert("商品数量最少0个");
+                    }
+                    count_add();
+            }                
+            //监视输入框的值得变化
+    		oCount[j].index=j;
+    		oCount[j].oninput=function() {
+    			if (oCount[this.index].value<0) {
+    				alert("商品数量必须大于0");
+    			}else if(oCount[this.index].value==""){
+    				total[this.index].innerHTML=0;
+    				oCount[this.index].value=0;
+    			}else{
+    				total[this.index].innerHTML=parseInt(price[this.index].innerHTML)*parseInt(oCount[this.index].value);
+    			}
+                count_add();
+    		}
+    	}
+
+        //操作栏--删除选项
+    	box4[0].onclick=function(event) {
+    		event=event||window.event;
+    		var target=event.target||event.srcElement;
+    		if (target.className=="row_del") {
+    			box4[0].removeChild(target.parentNode.parentNode);
+    		}
+            count_add();
+    	}
+        //结算按钮
+    	all[0].onclick=function() {
+    		alert("一共"+money[0].innerHTML+"元");
+            box2[0].removeChild(box4[0]);
+    	}
+    </script>
+</body>
+
+</html>
