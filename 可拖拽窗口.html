@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="utf-8">
+	<title>可拖拽窗口</title>
+	<style type="text/css">
+	*{margin:0;padding: 0;}
+	body{
+		background:url(img/4.jpg);
+	}
+	#box1{
+		width: 300px;
+		height: 150px;
+		border: 1px solid black;
+		position: absolute;
+		-moz-user-select: none;
+		-khtml-user-select: none; 
+		user-select: none;
+	}
+	#title{
+		width: 100%;
+		height: 30px;
+		border-bottom: 1px solid red;
+		position: absolute;
+		cursor: move;
+		font-size: 16px;
+	}
+	#title a,a.open{
+		position: absolute;
+		width: 20px;
+		height: 20px;
+		border:1px solid black;
+		top:4px;
+	}
+	#title .min{
+		right:75px;
+		background:url(img/min-20.png);
+	}
+	#title .revert{
+		display: none;
+		right:50px;
+		background:url(img/revert-48.png);
+	}
+	#title .max{
+		background:url(img/maximise-64.png);
+		right:50px;
+	}
+	#title .close{
+		background:url(img/close-32.png);
+		right:25px;
+	}
+
+	#dl,#dt,#dr,#db{
+		/*border:1px solid black;*/
+		position: absolute;
+	}
+	#dl{
+		width: 10px;
+		height: 100%;
+		left:-5px;
+		cursor: e-resize;
+	}
+	#dt{
+		width: 100%;
+		height: 10px;
+		top:-5px;
+		cursor: n-resize;
+	}
+	#dr{
+		width: 10px;
+		height: 100%;
+		right: -5px;
+		cursor: e-resize;
+	}
+	#db{
+		width: 100%;
+		height: 10px;
+		bottom:-5px;
+		cursor: n-resize;
+	}
+
+	#lt,#tr,#rb,#bl{
+		/*border:1px solid red;*/
+		position: absolute;
+		width: 10px;
+		height: 10px;
+	}
+	#lt{
+		top:-5px;
+		left: -5px;
+		cursor: nw-resize;
+	}
+	#tr{
+		top:-5px;
+		right: -5px;
+		cursor: ne-resize;
+	}
+	#rb{
+		right: -5px;
+		bottom:-5px;
+		cursor: nw-resize;
+	}
+	#bl{
+		bottom:-5px;
+		left:-5px;
+		cursor: ne-resize;
+	}
+	.content{
+		font-size: 12px;
+		position: absolute;
+		top:35px;
+	}
+	</style>
+</head>
+<body>
+	<div id="box1">
+		<div id="title">
+			<p>拖动栏</p>
+			<div>
+				<a href="#" title="最小化" class="min"></a>
+				<a href="#" title="最大化" class="max"></a>
+				<a href="#" title="还原" class="revert"></a>
+				<a href="#" title="关闭" class="close"></a>
+			</div>
+		</div>
+		<div id="dl"></div>
+		<div id="dt"></div>
+		<div id="dr"></div>
+		<div id="db"></div>
+
+		<div id="lt"></div>
+		<div id="tr"></div>
+		<div id="rb"></div>
+		<div id="bl"></div>
+ 		<div class="content">
+       		① 窗口可以拖动；<br />
+       		② 窗口可以通过八个方向改变大小；<br />
+       		③ 窗口可以最小化、最大化、还原、关闭；<br />
+       		④ 限制窗口最小宽度/高度。
+    </div>  		
+	</div>
+	<script type="text/javascript">
+		var box1=document.getElementById('box1');
+		var title=document.getElementById('title');
+
+		var oMin=document.getElementsByClassName('min')[0];
+		var oRevert=document.getElementsByClassName('revert')[0];
+		var oMax=document.getElementsByClassName('max')[0];
+		var oClose=document.getElementsByClassName('close')[0];
+		var aX=document.documentElement.clientWidth;
+		var aY=document.documentElement.clientHeight;
+
+		var wMax=300;
+		var HMax=150;
+		box1.style.left=(aX-wMax)/2+"px";
+		box1.style.top=(aY-HMax)/2+"px";		
+		title.onmousedown=function(ev) {
+			var ev=event||window.event;
+			var bL=box1.offsetLeft;
+			var bT=box1.offsetTop;
+			var iX=ev.pageX-bL;
+			var iY=ev.pageY-bT;
+			document.onmousemove=function(ev) {
+				var ev=event||window.event;
+				box1.style.left=ev.pageX-iX+"px";
+				box1.style.top=ev.pageY-iY+"px";
+			}
+			document.onmouseup=function() {
+				document.onmousemove=null;
+				document.onmousedown=null;
+			}			
+		}
+		//最大化
+		oMax.onclick=function(ev) {
+			box1.style.top=box1.style.left=0;
+			box1.style.width=aX-2+"px";
+			box1.style.height=aY-2+"px";
+			oMax.style.display="none";
+			oRevert.style.display="block";
+		}
+		//还原
+		oRevert.onclick=function() {
+			box1.style.width="300px";
+			box1.style.height="150px";
+			box1.style.left=(aX-300)/2+"px";
+			box1.style.top=(aY-150)/2+"px";
+			oMax.style.display="block";
+			oRevert.style.display="none";			
+		}
+		//最小化和关闭
+		oClose.onclick=oMin.onclick=function() {
+			box1.style.display="none";
+			var aa=document.createElement("a");
+			aa.className="open";
+			aa.title="还原";
+			aa.href="#";
+			aa.style.left="50%";
+			aa.style.margin="0 0 0 -20px";
+			document.body.appendChild(aa);
+			//还原
+			aa.onclick=function() {
+				box1.style.display="block";
+				document.body.removeChild(aa);
+				this.onclick = null;
+			}
+		}
+		oMax.onmousedown=oMin.onmousedown=oRevert.onmousedown=oClose.onmousedown=function(evevt) {
+				(event||window.event).cancelBubble=true;
+		}
+		//改变大小
+		function resize(box,div,isLeft,isTop,lockX,lockY) {
+			div.onmousedown=function(ev) {
+				var ev=event||window.event;
+				var bL=box.offsetLeft;
+				var bT=box.offsetTop;
+				var dL=div.offsetLeft;
+				var dT=div.offsetTop;
+				var bW=box.offsetWidth;
+				var bH=box.offsetHeight;
+				var oX=ev.pageX-dL;
+				var oY=ev.pageY-dT;
+				document.onmousemove=function(ev) {
+					var ev=event||window.event;
+					//鼠标移动距离
+					var iX=ev.pageX-oX;
+					var iY=ev.pageY-oY;
+					//最大缩放尺寸
+					var maxW=document.documentElement.clientWidth-box.offsetLeft-2;
+					var maxH=document.documentElement.clientHeight-box.offsetTop-2;
+					//确定缩放大小
+					var iL=isLeft ? bW-iX-2 : div.offsetWidth+iX-2;
+					var iT=isTop ? bH-iY-2 : div.offsetHeight+iY-2;
+					//确定方块位置
+					isLeft&&(box.style.left=bL+iX+"px");
+					isTop&&(box.style.top=bT+iY+"px");
+
+					iL<wMax&&(iL=wMax);
+					iL>maxW&&(iL=maxW);
+					lockX||(box.style.width=iL+"px");
+
+					iT<HMax&&(iT=HMax);
+					iT>maxH&&(iT=maxH);
+					lockY||(box.style.height=iT+"px");
+
+					if ((isLeft &&iL==wMax)||(isTop&& iT==HMax)) {
+						document.onmousemove=null;
+					}
+					document.onmouseup=function() {
+						document.onmousemove=null;
+						document.onmouseup=null;
+					}
+					return false;
+				}
+			}
+		}
+		aa();
+			function aa() {
+			var dl=document.getElementById('dl');
+			var dt=document.getElementById('dt');
+			var dr=document.getElementById('dr');
+			var db=document.getElementById('db');
+
+			var lt=document.getElementById('lt');
+			var tr=document.getElementById('tr');
+			var rb=document.getElementById('rb');
+			var bl=document.getElementById('bl');
+
+			resize(box1,dl,true,false,false,true);
+			resize(box1,dt,false,true,true,false);
+			resize(box1,dr,false,false,false,true);
+			resize(box1,db,false,false,true,false);
+			resize(box1,lt,true,true,false,false);
+			resize(box1,tr,false,true,false,false);
+			resize(box1,rb,false,false,false,false);
+			resize(box1,bl,true,false,false,false);				
+			}
+			
+
+	</script>
+</body>
+</html>
