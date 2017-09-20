@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>跟随鼠标显示大图</title>
+	<style type="text/css">
+		*{margin: 0;padding: 0}
+		#box{
+			width: 500px;
+			height: 500px;
+			position: absolute;
+			top:10px;
+			right: 300px;
+			border:1px solid red;
+			border-radius: 50px;
+		}
+		#box img{
+			width: 500px;
+			height: 500px;	
+			border-radius: 50px;		
+		}
+		#box1{
+			width: 700px;
+			height: 700px;
+			position: absolute;
+			display: none;
+		}
+		#box1 img{
+width: 700px;
+			height: 700px;			
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<img src="images/1 -min.jpg">
+	</div>
+	<div id="box1">
+		<img src="images/1.jpg">
+	</div>
+	<script type="text/javascript">
+		var box=document.getElementById('box');
+		var box1=document.getElementById('box1');
+		box.onmouseover=function(ev) {
+			var ev=event||window.event;
+			var oX=ev.pageX;
+			var oY=ev.pageY;
+			box1.style.left=oX+15+"px";
+			box1.style.top=oY+15+"px";
+			box1.style.display="block";
+			document.onmousemove=function(ev) {
+				var ev=event||window.event;
+				var maxI=document.documentElement.offsetWidth-ev.pageX;
+				box1.style.left=(maxI<box1.offsetWidth?ev.pageX-box1.offsetWidth:ev.pageX)+"px";	 
+				box1.style.top=	ev.pageY+15+"px";
+				console.log(maxI);
+				console.log(box1.offsetWidth);
+				console.log(ev.pageX);
+				console.log(box1.style.left);
+			}
+			document.onmouseout=function(ev) {
+				box1.style.display="none";
+				document.onmousemove=null;
+			}
+		}
+	</script>
+</body>
+</html>
