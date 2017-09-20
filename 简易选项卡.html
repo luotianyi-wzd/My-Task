@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>简易选项卡</title>
+	<style type="text/css">
+		*{
+			margin:0;
+			padding: 0;
+		}
+		#box{
+			width: 450px;
+			margin: 10px auto;
+		}
+		#title{
+			width: 450px;
+			height: 32px;
+			background-color: black;
+		}
+		#title li{
+			width: 76px;
+			height: 32px;
+			float: left;
+			color: white;
+			list-style-type: none;
+			text-align: center;
+		}
+		#concent{
+			position: relative;
+			border:1px solid black;
+			border-top-width: 0;
+		}
+		#concent ul{
+			margin: 0 30px;
+			width: 388px;
+			line-height: 30px;
+			font-size: 20px;
+			display: none;
+		}
+		#concent .hover{
+			display: block;
+		}
+		#title .open{
+			background-color: #D3C1C1;
+			color:black;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+	<ul id="title">
+		<li class="open">第一课</li>
+		<li>第二课</li>
+		<li>第三课</li>
+	</ul>
+	<div id="concent">
+		<ul class="hover">
+			<li>1111111111111111</li>
+			<li>1111111111111111</li>
+			<li>1111111111111111</li>
+			<li>1111111111111111</li>
+			<li>1111111111111111</li>
+		</ul>
+
+		<ul>
+			<li>222222222222222</li>
+			<li>222222222222222</li>
+			<li>222222222222222</li>
+			<li>222222222222222</li>
+			<li>222222222222222</li>
+		</ul>	
+
+		<ul>
+			<li>3333333333333</li>
+			<li>3333333333333</li>
+			<li>3333333333333</li>
+			<li>3333333333333</li>
+			<li>3333333333333</li>
+			<li>3333333333333</li>
+			<li>3333333333333</li>
+			<li>3333333333333</li>
+			<li>3333333333333</li>
+			<li>3333333333333</li>			
+			<li>3333333333333</li>
+			<li>3333333333333</li>
+			<li>3333333333333</li>
+			<li>3333333333333</li>
+			<li>3333333333333</li>			
+			<li>3333333333333</li>
+			<li>3333333333333</li>
+			<li>3333333333333</li>
+			<li>3333333333333</li>
+			<li>3333333333333</li>			
+			<li>3333333333333</li>
+			<li>3333333333333</li>
+			<li>3333333333333</li>
+			<li>3333333333333</li>
+			<li>3333333333333</li>			
+		</ul>		
+	</div>
+	</div>
+	<script type="text/javascript">
+		var title=document.getElementById('title');
+		var tLi=title.getElementsByTagName('li');
+		var concent=document.getElementById('concent');
+		var cUl=concent.getElementsByTagName('ul');
+		console.log(tLi);
+		for (var i = 0; i < tLi.length; i++) {
+			tLi[i].index=i;
+			tLi[i].onmouseover=function() {
+				for(var j=0; j<tLi.length;j++){
+					cUl[j].className="";
+					tLi[j].className="";
+				}
+				cUl[this.index].className="hover";
+				tLi[this.index].className="open";				
+			}
+		}
+	</script>
+</body>
+</html>
