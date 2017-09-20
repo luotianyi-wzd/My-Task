@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>评分系统</title>
+	<style type="text/css">
+		*{
+			margin:0;
+			padding: 0;
+		}
+		#box{
+			width:800px;
+			height: 30px;
+			margin:10px auto;
+			position: relative;
+		}
+		#box ul{
+			position: absolute;
+			top:0px;
+			left: 150px;
+		}
+		#box li{
+			float:left;
+			width: 25px;
+			height: 20px;
+			border:1px red solid;
+			list-style-type: none;
+		}
+		#box2{
+			height: 20px;
+			position: absolute;
+			left: 300px;
+			top:0;
+		}
+		#box1{
+			width: 180px;
+			height: 60px;
+			border:1px solid black;
+			position: absolute;
+			top:30px;
+			display: none;
+		}
+		.xian{
+			background-color: yellow;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<span>点击方块就能打分</span>
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+		</ul>
+		<div id="box2"></div>
+		<div id="box1"></div>
+	</div>
+	<script type="text/javascript">
+		var box=document.getElementById('box');
+		var oLi=box.getElementsByTagName('li');
+		var box2=document.getElementById('box2');
+		var box1=document.getElementById('box1');
+		var iScore=iStar=0;
+		var arr=["1 分 (差得太离谱，与卖家描述的严重不符，非常不满)",
+				 "2 分 (部分有破损，与卖家描述的不符，不满意)",
+				 "3 分 (质量一般，没有卖家描述的那么好)",
+				 "4 分 (质量不错，与卖家描述的基本一致，还是挺满意的)",
+				 "5 分 (质量非常好，与卖家描述的完全一致，非常满意)"];
+
+		for (var i = 0; i < oLi.length; i++) {
+			oLi[i].index=i;
+			oLi[i].onmouseover=function() {
+				aa(this.index+1);
+				// oLi[this.index].className="xian";
+				box1.style.display="block";
+				box1.innerHTML=arr[this.index];
+				box1.style.left= oLi[this.index].offsetLeft+(box1.offsetWidth/2)+"px";
+			}
+			oLi[i].onmouseout=function() {
+				aa();
+				box1.style.display="none";
+			}			
+			oLi[i].onclick=function() {
+				box2.innerHTML=arr[this.index];
+				box1.style.display="none";
+				iStar=this.index+1;
+			}
+			
+		}
+		//评分系统
+		function aa(b) {
+			iScore=b||iStar;
+			for (var i = 0; i < oLi.length; i++) {
+				oLi[i].className=i<iScore?"xian":"";
+				console.log(oLi[i]);
+			}
+		}
+	</script>
+</body>
+</html>
