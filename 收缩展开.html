@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>下拉隐藏</title>
+	<style type="text/css">
+	*{margin:0;padding: 0;}
+	#box{
+		width: 100%;
+		height: 100px;
+		background-color:#51B3F8;
+		opacity: 0.7;
+		/*box-shadow: 1000px 100px 100px 100px #379FEF inset;*/
+	}
+	#box ul{
+		width: 100%;
+		height: 100px;
+	}
+	#box ul li{
+		font-size: 30px;
+		color: white;
+		display: inline-block;
+		margin-left: 30px;
+		line-height: 80px;
+		height: 100%;
+		cursor:pointer;
+	}
+	#box ul li a{
+		text-decoration-line: none;
+	}
+	#box ul li:hover{
+		background-color: #247576;
+		transform: translate(0,0);
+		transition:all .5s ease-in 0s;
+	}
+	.yin{
+		display: none;
+	}
+	#box p{
+		position: absolute;
+		top:30%;
+		left: 30px;
+	}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<ul>
+			<li><a href="#">首页</a></li>
+			<li><a href="#">博客</a></li>
+			<li><a href="#">关于</a></li>
+			<li><a href="#">联系</a></li>
+		</ul>
+		<p>
+			1.向下滚动鼠标滚轮导航条将收缩；<br>
+		    2.向上滚动鼠标滚轮导航条将展开；<br>
+            3.导航条收缩状态将鼠标放上去，将展开导航条，鼠标移出则收缩回去。
+		</p>
+	</div>
+	<script type="text/javascript">
+		var box=document.getElementById('box');
+		var bUl=document.getElementsByTagName('ul')[0];
+		var bP=document.getElementsByTagName('p')[0];
+		var timer=null;
+		document.documentElement.onmousewheel=function(ev) {
+			clearEvent();
+			clearInterval(timer);
+			var ev=event||window.event;
+			if (ev.wheelDelta>0) {
+				doMove(box,100);
+				bP.style.top="30%";
+			}
+			if (ev.wheelDelta<0) {
+				doMove(box,30,"yin");
+				bP.style.top="15%";
+				box.onmouseover=function() {
+					clearInterval(timer);
+					doMove(box,100);
+					box.onmouseout=function() {
+						clearInterval(timer);
+						doMove(box,30,"yin");				
+					}
+				}				
+			}
+		}
+								
+		function doMove(a,b,c) {
+			clearInterval(a.timer);
+			a.timer=setInterval(function() {
+				var iH=a.offsetHeight;
+				var speed=(b-iH)/2;
+				speed=speed>0?Math.floor(speed):Math.ceil(speed);
+				iH==b?clearInterval(a.timer):(a.style.height=iH+speed+"px");	
+				bUl.className=c;			
+			},30)
+		}
+		function clearEvent() {
+			box.onmouseover=null;
+			box.onmouseout=null;
+		}
+	</script>
+</body>
+</html>
