@@ -7,6 +7,9 @@
 	*{padding: 0;margin:0;}
 	body{
 		position: relative;
+		-moz-user-select: none;
+		-khtml-user-select: none;
+		user-select: none;
 	}
 	#box1{
 		width: 100px;
@@ -27,12 +30,6 @@
 	<button>根据鼠标移动轨迹移动</button>
 	<p>点击按钮开始移动</p>
 	<div id="box1">
-		<li>1</li>
-		<li>1</li>
-		<li>1</li>
-		<li>1</li>
-		<li>1</li>
-		<li>1</li>
 	</div>
 	<script type="text/javascript">
 		var box1=document.getElementById('box1');
@@ -81,6 +78,7 @@
 					var aa=mousePosition(ev);
 					//鼠标移动的坐标值被push进arr数组,保存
 					arr.push({x:aa.x,y:aa.y});
+					box1.innerHTML="鼠标横坐标：" + aa.x +";<br/>鼠标纵坐标：" + aa.y;
 				}
 			}
 			//当鼠标松开,方块开始移动
