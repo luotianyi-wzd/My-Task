@@ -25,8 +25,7 @@ function loadDoc() {
 function myFunction(xml) {
   var i;
   var xmlDoc = xml.responseXML;
-	alert(xmlDoc.innerHTML
-		 );
+
   var table="<tr><th>Artist</th><th>Title</th></tr>";
   var x = xmlDoc.getElementsByTagName("CD");
   for (i = 0; i <x.length; i++) {
