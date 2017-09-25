@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>ajax读取输入框内容</title>
+	<style type="text/css"></style>
+</head>
+<body>
+		<label>姓名：</label><input type="text" name="" id="username">
+		<label>密码：</label><input type="text" name="" id="word">  
+		<button>点击</button>
+	<div id="box"></div>
+	<script type="text/javascript">
+		var but=document.getElementsByTagName('button')[0];
+		but.onclick=function() {
+			click();
+		}
+
+		function click() {
+			var username=document.getElementById('username').value;
+			var word=document.getElementById('word').value;
+			var box=document.getElementById('box');
+			var xhr;
+
+			if (window.XMLHttpRequest) {
+				xhr=new XMLHttpRequest();
+			}else{
+				xhr=new ActiveXObject("Microsoft.XMLHTTP");
+			}
+
+			xhr.open("GET","Get.aspx",true);
+			xhr.send(null);
+
+			xhr.onreadystatechange=function() {
+				if (xhr.readystate==4&&xhr.status==200) {
+					box.innerHTML=xhr.responseText;
+					console.log(xhr.responseText);
+				}
+			}
+		}
+	</script>
+</body>
+</html>
