@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>ajax登陆界面验证</title>
+	<style type="text/css">
+		*{
+			margin:0;
+			padding:0;
+		}
+		#box{
+			width: 300px;
+			height: 150px;
+			border:1px green solid;
+			margin: 10px auto;
+			text-align: center;
+			line-height: 40px;
+		}
+		#text{
+			height: 20px;
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<label>账号</label>： <input type="text" id="name" name=""><br>
+		<label>密码</label>： <input type="password" id="password" name=""><br>
+		<p id="text"></p>
+		<button id="btn1" onclick="login()">登陆</button>
+		<button id="btn2" onclick="register()">注册</button>
+	</div>
+
+	<script type="text/javascript">
+		// 封装ajax
+		function ajax(url,onload,onerror) {
+			var xhr;
+			if (window.XMLHttpRequest) {
+				xhr=new XMLHttpRequest();
+			}else{
+				xhr=new ActiveXObeject("Mircosoft.XMLHTTP");
+			}
+			xhr.open("POST",url,true);
+			xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');    
+			xhr.send();
+			xhr.onreadystatechange=function() {
+				if (xhr.readyState==4&&xhr.status==200) {
+					onload(xhr.responseText);
+				}else{
+					onerror;
+				}
+			}
+		}
+		
+				
+		function login() {
+			var name=document.getElementById('name').value;
+			var password=document.getElementById('password').value;			
+			if (name!==""&&password!=="") {
+				ajax("userhandle.ashx?user="+name+"&password="+password,function(xhrText) {
+					if (xhrText=="fail") {
+						document.getElementById('text').innerHTML="账号或者密码有误!";
+					}else{
+						alert("登陆成功!");
+						document.getElementById('text').innerHTML="";
+					}
+				})
+			}else{
+				document.getElementById('text').innerHTML="请输入账号或者密码!";
+				return;
+			}
+		}
+
+		function register() {
+			var name=document.getElementById('name').value;
+			var password=document.getElementById('password').value;			
+			if (name==""||password=="") {
+				document.getElementById('text').innerHTML="请输入密码或者账号";
+			}else{
+				ajax("register.ashx?userName=" +name,function(xhrText) {
+					if (xhrText=="repeat") {
+						document.getElementById('text').innerHTML="账号已经被注册!";
+					}
+					if(xhrText=="success"){
+						alert("注册成功!");
+						document.getElementById('text').innerHTML="";
+					}
+				});
+			}
+		}
+	</script>
+</body>
+</html>
