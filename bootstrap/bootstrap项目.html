@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+<head>.
+	<meta charset="utf-8">
+	<title>bootstrap项目</title>
+	<link rel="stylesheet" type="text/css" href="jquery/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="jquery/bootstrap/css/bootstrap-theme.min.css">
+	<style type="text/css">
+		#myCarousel-1 .carousel-inner{
+			position: relative;
+			height: 400px;
+		}
+		#myCarousel-1 .carousel-inner img{
+			display: inline-block;
+			position: absolute;
+			right:10%;
+			top:0;
+			z-index: -1;
+		}
+		#myCarousel-1 .carousel-inner .item div{
+			position: absolute;
+			left:10%;
+			top:10%;
+		}
+		#myCarousel-1 .carousel-inner .item div h1{
+			width: 201px;
+			height: 67px;
+		}
+	</style>
+</head>
+<body>
+	<div class="navbar navbar-fixed-top navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">首页</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">主页</span></a></li>
+            <li><a href="#shop">背景</span></a></li>
+            <li><a href="#support">故事</span></a></li>
+            <li class="dropdown">
+            	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">门派</a>
+            	<ul class="dropdown-menu" id="dropdown-menu">
+            		<li><a href="#myCarousel-1">苍云</a></li>
+            		<li><a href="#myCarousel-1">七秀</a></li>
+					<li><a href="#myCarousel-1">藏剑</a></li>
+            		<li><a href="#myCarousel-1">霸刀</a></li>            		
+            		<li><a href="#myCarousel-1">长歌</a></li>            		
+					<li><a href="#myCarousel-1">万花</a></li>
+            		<li><a href="#myCarousel-1">唐门</a></li>            		
+					<li><a href="#myCarousel-1">纯阳</a></li>
+            		<li><a href="#myCarousel-1">丐帮</a></li>            		
+					<li><a href="#myCarousel-1">少林</a></li>
+            		<li><a href="#myCarousel-1">明教</a></li> 
+            		<li><a href="#myCarousel-1">五毒</a></li>
+            		<li><a href="#myCarousel-1">天策</a></li>            		
+            	</ul>
+            </li>
+          </ul>
+        </div><!-- /.nav-collapse -->
+      </div><!-- /.container -->
+    </div>
+
+	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+      <img src="images/js-1.jpg" alt="...">
+    </div>
+    <div class="item">
+      <img src="images/js-2.jpg" alt="...">
+    </div>
+    <div class="item">
+      <img src="images/js-3.jpg" alt="...">
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+
+
+	<div class="row" style="margin-top:1%">
+
+		<div class="col-md-2">
+			<div class="panel-group" id="accordion">
+			    <div class="panel panel-default" style="width: 70%;margin:4% 0 6% 15%">
+			        <div class="panel-heading">
+			            <h4 class="panel-title">
+			                <a data-toggle="collapse" data-parent="#accordion" 
+			                href="#collapseOne">
+			                点击查看资料站
+			                </a>
+			            </h4>
+			        </div>
+			        <div id="collapseOne" class="panel-collapse collapse in">
+			            <div class="panel-body">
+			                <a href="#">查看官方指南</a>
+			            </div>
+			        </div>
+			    </div>
+			    <div class="panel panel-success" style="width: 70%;margin:4% 0 6% 15%">
+			        <div class="panel-heading">
+			            <h4 class="panel-title">
+			                <a data-toggle="collapse" data-parent="#accordion" 
+			                href="#collapseTwo">
+			                点击查看新手指南
+			                </a>
+			            </h4>
+			        </div>
+			        <div id="collapseTwo" class="panel-collapse collapse">
+			            <div class="panel-body">
+			                <a href="#">查看新手指南</a>
+			            </div>
+			        </div>
+			    </div>
+			    <div class="panel panel-info" style="width: 70%;margin:4% 0 6% 15%">
+			        <div class="panel-heading">
+			            <h4 class="panel-title">
+			                <a data-toggle="collapse" data-parent="#accordion" 
+			                href="#collapseThree">
+			                点击查看数据库
+			                </a>
+			            </h4>
+			        </div>
+			        <div id="collapseThree" class="panel-collapse collapse">
+			            <div class="panel-body">
+			               <a href="#">资料库</a>
+			            </div>
+			        </div>
+			    </div>
+			    <div class="panel panel-warning" style="width: 70%;margin:4% 0 6% 15%">
+			        <div class="panel-heading">
+			            <h4 class="panel-title">
+			                <a data-toggle="collapse" data-parent="#accordion" 
+			                href="#collapseFour">
+			                点击查看社区
+			                </a>
+			            </h4>
+			        </div>
+			        <div id="collapseFour" class="panel-collapse collapse">
+			            <div class="panel-body">
+			               <a href="#">点击查看社区</a>
+			            </div>
+			        </div>
+			    </div>
+			</div>
+		</div>
+
+		<div id="myCarousel-1" class="carousel slide col-md-7"> 	 
+			<div style="text-align:center;">
+				<input type="button" class="btn slide-one" value="苍云">
+				<input type="button" class="btn slide-two" value="七秀">
+				<input type="button" class="btn slide-three" value="藏剑">
+				<input type="button" class="btn slide-four" value="霸刀">
+				<input type="button" class="btn slide-five" value="长歌">
+				<input type="button" class="btn slide-six" value="万花">
+				<input type="button" class="btn slide-seven" value="唐门">
+				<input type="button" class="btn slide-eight" value="纯阳">
+				<input type="button" class="btn slide-nine" value="丐帮">
+				<input type="button" class="btn slide-ten" value="少林">
+				<input type="button" class="btn slide-eleven" value="明教">
+				<input type="button" class="btn slide-twelve" value="五毒">
+				<input type="button" class="btn slide-thirteenth" value="天策">
+			</div>				 
+			<div class="carousel-inner">
+		        <div class="item active">
+		        	<div>
+		        		<h1 style="background:url(images/t02.gif) no-repeat"></h1>
+		        		<p>节奏沉稳，攻守一体，三种战斗姿态灵活切换</p>
+		        	</div>
+		            <img src="images/bg02.jpg" alt="First slide">
+		        </div>
+		        <div class="item" >
+					<div>
+		        		<h1 style="background:url(images/t10.gif) no-repeat"></h1>
+		        		<p>舞中带剑影，群攻及解控能力强</p>
+		        	</div>		        	
+		           <img src="images/bg10.jpg" alt="Second slide">
+		        </div>
+		        <div class="item">
+		        	<div>
+		        		<h1 style="background:url(images/t05.gif) no-repeat"></h1>
+		        		<p>出色的身法移动和强悍的群体输出</p>
+		        	</div>	
+		           <img src="images/bg05.jpg" alt="Third slide">
+		        </div>
+				<div class="item">
+					<div>
+		        		<h1 style="background:url(images/t13.gif) no-repeat"></h1>
+		        		<p>三体切换，多种攻击手段的刀法大师</p>
+		        	</div>					
+		           <img src="images/bg13.jpg" alt="First slide">
+		        </div>
+		        <div class="item">
+					<div>
+		        		<h1 style="background:url(images/t01.gif) no-repeat"></h1>
+		        		<p>琴音伴战意，辅助及机动性强</p>
+		        	</div>		        	
+		           <img src="images/bg01.jpg" alt="Second slide">
+		        </div>
+		        <div class="item">
+					<div>
+		        		<h1 style="background:url(images/t12.gif) no-repeat"></h1>
+		        		<p>点穴手法与医道兼修，令人进退两难</p>
+		        	</div>		        	
+		           <img src="images/bg12.jpg" alt="Third slide">
+		        </div>	
+				 <div class="item">
+					<div>
+		        		<h1 style="background:url(images/t09.gif) no-repeat"></h1>
+		        		<p>神出鬼没的身法，诡异的机关和暗器</p>
+		        	</div>				 	
+		           <img src="images/bg09.jpg" alt="Second slide">
+		        </div>
+		        <div class="item">
+					<div>
+		        		<h1 style="background:url(images/t04.gif) no-repeat"></h1>
+		        		<p>控制强悍，招式灵活，爆发极强</p>
+		        	</div>		        	
+		           <img src="images/bg04.jpg" alt="Third slide">
+		        </div>
+				<div class="item">
+					<div>
+		        		<h1 style="background:url(images/t03.gif) no-repeat"></h1>
+		        		<p>单体伤害及控制能力极强，拥有较强的接近目标的能力</p>
+		        	</div>					
+		           <img src="images/bg03.jpg" alt="First slide">
+		        </div>
+		        <div class="item">
+		       		<div>
+		        		<h1 style="background:url(images/t06.gif) no-repeat"></h1>
+		        		<p>高血高内防，内外兼修全面平衡</p>
+		        	</div>
+		           <img src="images/bg06.jpg" alt="Second slide">
+		        </div>
+		        <div class="item">
+		        	<div>
+		        		<h1 style="background:url(images/t11.gif) no-repeat"></h1>
+		        		<p>步法飘忽，攻击迅速，追击能力强</p>
+		        	</div>
+		           <img src="images/bg11.jpg" alt="Third slide">
+		        </div>
+				<div class="item">
+					<div>
+		        		<h1 style="background:url(images/t07.gif) no-repeat"></h1>
+		        		<p>操控蛊虫及灵兽，适应多种作战需求</p>
+		        	</div>
+		           <img src="images/bg07.jpg" alt="Third slide">
+		        </div>	
+				<div class="item">
+					<div>
+		        		<h1 style="background:url(images/t08.gif) no-repeat"></h1>
+		        		<p>唯一能骑马作战的门派，高血高外防高机动</p>
+		        	</div>
+		           <img src="images/bg08.jpg" alt="Third slide">
+		        </div>			        		        			        	        
+		    </div>
+		</div> 
+
+		<div class="col-md-3">
+			<ul class="list-group">
+			    <li class="list-group-item">最新消息</li>
+			    <li class="list-group-item"><a href="#">[新闻] 中秋盛典28日开启 新金发外观视频曝光</a></li>
+			    <li class="list-group-item"><a href="#">[新闻] 传承经典民俗 中秋礼盒视频首曝</a></li>
+			    <li class="list-group-item"><a href="#">[新闻] 重制版9月30日首测 预约专题今日上线</a></li>
+			    <li class="list-group-item"><a href="#">[新闻] 剑魔入世 《四海流云》今日16:00上映</a></li>
+  				<li class="list-group-item">公告</li>
+			    <li class="list-group-item"><a href="#">[公告] 9月25日更新公告</a></li>
+			    <li class="list-group-item"><a href="#">[公告] 9月25日例行维护公告（已完成）</a></li>
+			    <li class="list-group-item"><a href="#">[公告] 9月21日更新公告</a></li>
+			    <li class="list-group-item"><a href="#">[公告] 9月21日例行维护公告（已完成）</a></li>			    
+			</ul>
+		</div>
+	</div>
+
+	 <footer class="main-footer" style="background-color: #292828;margin-top:1%;padding: 0">
+        <div class="container" style="text-align: center;height: 100px;color: #FFF;margin-top:1%;line-height: 30px">
+ 			<a href="#">关于我们</a>|<a href="#">服务协议</a>|<a href="#">客服中心</a>|<a href="#">联系我们</a>|
+        	<p>婉拒18岁以下未成年用户进入游戏 健康游戏忠告：抵制不良游戏 拒绝盗版游戏 注意自我保护 谨防受骗上当 适度游戏益脑 沉迷游戏伤身 合理安排时间 享受健康生活</p>
+        </div>
+    </footer>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  		<div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		        <div class="modal-header">
+		        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        	<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+		        </div>
+		        <div class="modal-body">
+		       		<p>说明：本页面使用bootstrap框架搭建，页面简单，使用了一些插件，样式</p>
+		       		<p>点击导航条门派，会展开各个门派，点击会跳到下方相应的门派介绍</p>
+		       		<p>可使用ESC关闭模态框</p>
+		        </div>
+		        <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			        <button type="button" class="btn btn-primary">Save changes</button>
+		        </div>
+		    </div>
+  		</div>
+	</div>
+
+    <script type="text/javascript" src="jquery/jQuery/jquery-3.2.1.js"></script>
+    <script type="text/javascript" src="jquery/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    	$(function(){     
+	        $.each($("#myCarousel-1 input"),function(index) {
+	        	$(this).on("click",function() {
+	        		 $("#myCarousel-1").carousel(index);
+	        	})
+	        })
+	        $.each($("#dropdown-menu a"),function(index) {
+	        	$(this).on("click",function() {
+	        		$("#myCarousel-1").carousel(index);
+	        	})
+	        })
+			$(function() {
+				$("#myModal").modal({
+					keyboard:true
+			})
+		});	        
+    });
+    </script>
+</body>
+</html>
