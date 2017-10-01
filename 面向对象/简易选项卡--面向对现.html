@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>简易选项卡--面向对象</title>
+	<style type="text/css">
+		*{
+			margin:0;
+			padding: 0;
+		}
+		li{
+			list-style-type: none;
+		}
+		#box{
+			width: 450px;
+			margin: 10px auto;
+		}
+		#title{
+			width: 450px;
+			height: 32px;
+			background-color: black;
+		}
+		#title li{
+			width: 76px;
+			height: 32px;
+			float: left;
+			color: white;
+			list-style-type: none;
+			text-align: center;
+			line-height: 30px;
+		}
+		#concent{
+			position: relative;
+			border:1px solid black;
+			border-top-width: 0;
+		}
+		#concent ul{
+			margin: 0 30px;
+			width: 388px;
+			line-height: 30px;
+			font-size: 20px;
+			display: none;
+			font-family: KaiTi;
+			font-size: 15x;
+		}
+		#concent .hover{
+			display: block;
+		}
+		#title .open{
+			background-color: #D3C1C1;
+			color:black;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<ul id="title">
+			<li class="open">第一段</li>
+			<li>第二段</li>
+			<li>第三段</li>
+		</ul>
+		<div id="concent">
+			<ul class="hover">
+				<li>"一生太短，夕阳都不够看，还不亲眼曾见过最好的心上人，还不曾，听过最好的故事"</li>
+				<li>"缘分没有天注定"</li>
+				<li>"哪里会有人喜欢孤独，只是不喜欢失望"</li>
+			</ul>
+
+			<ul>
+				<li>"--我们大多数人都无法和所爱的人相守白头"</li>
+				<li>"--会的，里瑟先生，只是天个一方"</li>
+				<li>"我终于来到伊瓜苏，但是我好难过，因为我始终觉得·······，站在这儿的，应该是两个人"</li>
+				<li>"我这辈子最不后悔的事就是走进你的店里买下第一块三明治"</li>
+			</ul>	
+
+			<ul>
+				<li>"花开花落，人聚人散，都是无可奈何的事"</li>
+				
+			</ul>		
+		</div>
+	</div>
+	<script type="text/javascript">
+
+	window.onload=function() {
+		var tab=new Tab("box");
+	}
+
+	function Tab(id) {
+		var box=document.getElementById(id);
+		this.title=box.getElementsByTagName('ul')[0];
+		this.tLi=this.title.getElementsByTagName('li');
+		this.concent=box.getElementsByTagName('div')[0];
+		this.cUl=this.concent.getElementsByTagName('ul');
+		var _this=this;
+		for (var i = 0; i <this.tLi.length; i++) {
+			this.tLi[i].index=i;
+			this.tLi[i].onmouseover=function() {
+				_this.on_click(this);
+			}
+		}		 	
+	}
+
+	Tab.prototype.on_click=function(a) {
+		for(var j=0; j<this.tLi.length;j++){
+			this.cUl[j].className="";
+			this.tLi[j].className="";
+		}
+		this.cUl[a.index].className="hover";
+		this.tLi[a.index].className="open";			
+	}
+
+	</script>
+</body>
+</html>

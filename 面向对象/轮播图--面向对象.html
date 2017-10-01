@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+	<title>轮播广告</title>
+	<style type="text/css">
+		body,#box,.list,.count{
+			margin: 0px;
+			padding: 0px;
+			text-align: center;
+		}
+		ul{
+			list-style-type: none;
+		}
+		body{
+			background-color: black;
+		}
+		#box{
+			position: relative;
+			margin: 10px auto;
+			width:1000px;
+			height: 600px;
+			background-color: white;
+			border-radius:5px;
+			border: 8px solid white;
+		}
+		#box .list{
+			width: 1000px;
+			height: 600px;
+			position: relative;
+			overflow: hidden;
+		}
+		#box .list img{
+			width: 1000px;
+			height: 600px;
+			border-radius: 5px;
+		}
+		#box .list li{
+			width: 1000px;
+			height: 600px;
+			position: absolute;
+			top: 0;
+			left: 0;
+			opacity:0;
+			filter: alpha(opacity=0);
+		}
+		#box .list li.current{
+            opacity:1;
+            filter::alpha(opacity=100);
+		}
+		#box .count{
+			position: absolute;
+			right: 0;
+			bottom: 5px;
+		}
+		#box .count li{
+			color: #fff;
+			width: 20px;
+			height: 20px;
+			opacity: 0.7;
+			filter:alpha(opacity=70);
+			border-radius: 20px;
+			float: left;
+		}
+		#box .count li.current{
+			color: #fff;
+            opacity: 1;
+            filter:alpha(opacity=100);
+            font-weight: 700;
+            background-color: #f60;
+		}
+	</style>
+	<script type="text/javascript">
+/*		window.onload=function() {
+			var oBox=document.getElementById('box');
+			var oUl=oBox.getElementsByTagName('ul');
+			var oImg=oUl[0].getElementsByTagName('li');
+			var oNum=oUl[1].getElementsByTagName('li');
+			var timer=play=null;
+			var i=index=0;
+			for (var i = 0; i < oNum.length; i++) {
+				oNum[i].index=i;
+				//切换按钮
+				oNum[i].onmouseover=function() 
+				{
+					show(this.index);
+				}
+				}
+				//开启和关闭定时器
+				oBox.onmouseover=function() 
+				{
+					clearInterval(play);
+				}
+				oBox.onmouseout=function() 
+				{
+					autoPlay();
+				}
+				function autoPlay() 
+				{
+                    play=setInterval(function()
+                     {
+                     	index++;
+                     	index>=oImg.length&&(index=0);
+                        for (var i = 0; i < oNum.length; i++) {
+				            oNum[i].className="";
+					        oNum[index].className="current";
+						    oImg[i].style.opacity=0;
+					        oImg[index].style.opacity="100";
+				        };
+                     },1000)
+				}
+				autoPlay();
+				function show(a)
+				 {
+                     index=a;
+                     for (i = 0; i < oNum.length; i++) {
+                     	oNum[i].className="";
+                     	oNum[index].className="current";
+                     	oImg[i].style.opacity=0;
+                        oImg[index].style.opacity=100;
+                     }
+				 }
+		}*/
+		window.onload=function() {
+			var aa=new Carousel("box");
+			var play=null;
+		}
+		function Carousel(id) {
+			this.box=document.getElementById(id);
+			this.ul=box.getElementsByTagName('ul');
+			this.img=this.ul[0].getElementsByTagName('li');
+			this.li=this.ul[1].getElementsByTagName('li');
+			var _this=this;
+			var b=0;
+			// this.lunbo(this);
+			this.autoPlay(b); 
+			for (var i = 0; i < this.li.length; i++) {
+				this.li[i].index=i;
+				this.li[i].onmouseover=function() {
+					b=this.index;
+					_this.lunbo(b);
+				}
+				this.box.onmouseover=function() {
+					clearInterval(play);
+				}
+				this.box.onmouseout=function() {
+					_this.autoPlay(b); 
+				}
+			}
+		}
+		Carousel.prototype.lunbo=function(a) {
+			for (var i = 0; i < this.li.length; i++) {
+				this.li[i].className="";
+				this.img[i].style.opacity=0;
+				this.li[a].className="current";
+				this.img[a].style.opacity=100;
+			}
+		}
+		Carousel.prototype.autoPlay=function(a) {
+			var _this=this;
+			play=setInterval(function() {
+				a<(_this.li.length-1)?a++:a=0;
+				_this.lunbo(a);
+			},1000)
+		}
+	</script>
+</head>
+<body>
+    <div id="box">
+      <ul class="list">
+    	<li class="current"><img src="轮播广告/1.jpg"></li>
+    	<li><img src="轮播广告\2.jpg"></li>
+    	<li><img src="轮播广告\3.jpg"></li>
+    	<li><img src="轮播广告\4.jpg"></li>
+    	<li><img src="轮播广告\5.jpg"></li>
+      </ul>
+       <ul class="count">
+    	    <li class="current">1</li>
+    	    <li>2</li>
+    	    <li>3</li>
+    	    <li>4</li>
+    	    <li>5</li>
+        </ul>
+    </div>
+</body>
+</html>
