@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>音乐播放器</title>
+	<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+	<link rel="stylesheet" type="text/css" href="css/css.css">
+</head>
+<body>
+	<div id="wrap">
+		<div id="header">
+			<h3 id="title">洛天依 - 外婆桥</h3>
+		</div>
+		<div id="console">
+			<div class="btn btn2" title="上一首"></div>
+			<div class="btn btn1 play" title="播放"></div>
+			<div class="btn btn3" title="下一首"></div>
+		</div>
+		<div class="progress">
+			<div class="slider  ui-slider-handle top"  title="进度条">
+				<div class="pace"></div>
+				<div class="time">0:00</div>
+			</div>
+		</div>
+		
+		<div class="volume">
+			<div class="btn sound" title="静音"></div>
+			<div class="slider ui-slider-handle right" title="音量">
+				<div class="pace"></div>
+			</div>
+		</div>
+		<audio src="http://ouwxeg0q0.bkt.clouddn.com/%E6%B4%9B%E5%A4%A9%E4%BE%9D%20-%20%E5%A4%96%E5%A9%86%E6%A1%A5.mp3" id="audio"></audio>
+		<div id="playMode">
+			<div class="btn btn4" title="随机播放"></div>
+			<div class="btn btn5" title="单曲循环"></div>
+			<!-- <div class="btn btn6"></div>
+			<div class="btn btn7"></div> -->
+		</div>
+		<div id="playList">
+			<ol></ol>
+		</div>
+	</div>
+	<div id="explan">
+		<h1>说明</h1>
+		<ul>
+			<li>1.国庆期间没出去玩，用两天写了一个播放器，没写响应式</li>
+			<li>2.具备播放器基本功能，上一曲，下一曲，播放暂停，随机播放，单曲循环(由于没找到配套图标所以没写列表播放和，单曲播放)</li>
+			<li>3.拖动进度条可以拖动播放进度和音量大小</li>
+			<li>4.点击下方播放列表的歌曲可以播放歌曲</li>
+			<li>5.有歌曲计时功能</li>
+			<li>6.由于本人喜欢洛天依所以都是洛天依的歌曲,所以选的曲子都是洛天依</li>
+			<li>7.点击隐藏该说明</li>
+		</ul>
+	</div>
+	<script type="text/javascript" src="js/jquery-3.2.1.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+</body>
+</html>

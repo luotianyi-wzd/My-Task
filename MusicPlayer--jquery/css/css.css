@@ -1,0 +1,150 @@
+*{
+			margin: 0;
+			padding: 0;
+		}
+		body{
+			background: url(images/tianyi1.jpg) no-repeat center;
+		}
+		li{
+			list-style-type: none;
+		}
+		#wrap{
+			width: 30%;
+			position: relative;
+			margin: 50px auto;
+			height: 600px;
+		}
+		#wrap #title{
+			color:#F4DB10;
+		}
+		#header{
+			margin: 10px;
+		}
+		#console{
+			position: relative;
+			width: 100px;
+			height: 25px;
+			left: 20px;
+		}
+		.btn:hover{
+			opacity: 1;
+		}
+		.btn{
+			position: absolute;
+			width: 24px;
+			height: 24px;
+			top:0;
+			cursor: pointer;
+			opacity: 0.5;
+		}
+		#console .btn2{
+			left:0;
+			background: url(images/pre.png) no-repeat center;
+		}
+		#console .btn1{
+			left:30px;
+			background: url(images/play.png) no-repeat center;
+		}
+		#console .btn3{
+			left:60px;
+			background: url(images/next.png) no-repeat center;
+		}	
+		#console .pause{
+			left:30px;
+			background: url(images/pause.png) no-repeat center;
+		}
+		.progress{
+			position: absolute;
+			right:0;
+			top:45px;
+			width: 300px;
+		}				
+		.slider{
+			height: 2px;
+			cursor: pointer;
+			background-color: #FFF;
+		}
+		.progress .slider.top{
+			width: 300px;
+			
+		}
+		.progress .time{
+			position: absolute;
+			top:10px;
+			font-size: 12px;
+			color:red;
+		}
+		.slider .ui-slider-handle{
+			position: absolute;
+			width: 5px;
+			height: 5px;
+			margin-left:-2.5px;
+			opacity: 0;
+			transition: opacity 0.3s;
+		}
+		.slider .pace{
+			position: absolute;
+			height: 100%;
+			opacity: 0.7;
+			background: #0EA3ED;
+		}
+		.volume{
+			position: absolute;
+			top:130px;
+			left:20px;
+		}
+		.volume .slider.right{
+			width:100px;
+			position: absolute;
+			top:10px;
+			left:30px;
+		}
+		.volume .sound{
+			width: 26px;
+			height: 26px;
+			background: url(images/volume.png) no-repeat center;
+			cursor: pointer;
+			opacity: 0.5;	
+		}
+		.volume .sound:hover{
+			opacity: 1;
+		}
+		.volume .mute{
+			width: 26px;
+			height: 26px;
+			background: url(images/mute.png) no-repeat center;	
+			cursor: pointer;			
+		}
+		#playMode{
+			width: 200px;
+			height: 26px;
+			position: absolute;
+			top:130px;
+			right: 0;
+		}
+		#playMode .btn4{
+			left:30px;
+			background: url(images/random.png) no-repeat center;
+		}
+		#playMode .btn5{
+			left:60px;
+			background: url(images/repeat.png) no-repeat center;
+		}
+		#playList{
+			width: 30%;
+			position: absolute;
+			top:300px;
+			left:30px;
+		}	
+		#playList ol li{
+			margin-top: 10px;
+		}	
+		#explan{
+			width: 500px;
+			height: 220px;
+			border:1px red solid;
+			color: red;
+			position: absolute;
+			bottom:100px;
+			right: 0;
+		}
