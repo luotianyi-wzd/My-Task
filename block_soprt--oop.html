@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>运动的方块-面向对象</title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		#box1{
+			width: 500px;
+			height: 100px;
+			border:1px black solid;
+			margin: 10px auto;
+			position: relative;
+		}
+		#box2{
+			width: 20px;
+			height: 20px;
+			background-color: yellow;
+			position:absolute;
+			top:10px;
+			left:10px;
+		}
+		#btn1{
+			margin: 10px auto;
+			display: block;
+			width: 100px;
+		}
+	</style>
+</head>
+<body>
+	<div id="box1">
+		<div id="box2"></div>
+	</div>
+	<button id="btn1">开始运动</button>
+	<script type="text/javascript">	
+		function Block_soprt(box,obj,callback){
+			this.box=box;
+			this.obj=obj;
+			this.callback=callback;
+			var _this=this;
+			clearInterval(this.timer);
+			this.timer=setInterval(function() {
+				_this.sport();
+			},30)
+		}
+		Block_soprt.prototype={
+			css:function(pro,value) {
+				if (arguments.length==1) {
+					return parseFloat(this.box.currentStyle?this.box.currentStyle[pro]:getComputedStyle(this.box,null)[pro]);
+				}else if(arguments.length==2){
+					pro=="opacity"?(this.box.style.filter="alpha(opacity="+value+")",this.box.style.opacity=value/100):this.box.style[pro]=value+"px";
+				}
+			},
+			sport:function() {
+				var a=true;
+				for(var p in this.obj){
+					var cur=p=="opacity"?parseInt(this.css(p).toFixed(2)*100):this.css(p);
+					console.log(this.obj[p]);
+					speed=(cur-this.obj[p])/5;
+					speed=speed<0?Math.floor(speed):Math.ceil(speed);	
+					this.obj[p]==cur||(a=false,this.css(p,cur-speed));			
+				}
+			a&&(clearInterval(this.timer),this.callback && this.callback.call(this));
+			}
+		}
+
+		var btn=document.getElementById('btn1');
+		var box2=document.getElementById('box2');		
+		var arr1=[
+			{width:20, height:20},
+			{width:80, height:80},
+			{left:10}, {left:408},
+			{opacity:100},
+			{opacity:0},
+			{opacity:100},
+			{width:80, height:80, left:408},
+			{top:10},
+			{width:20, height:20, left:468},
+			{top:70},
+			{left:10},
+			{top:10},
+			{left:468},
+			{width:20, height:20, left:468},
+			{width:80, height:80, left:408},
+		];
+		var i=0;
+		var c=true;	
+		btn.onclick=function() {
+			this.disabled=true;
+			var oThis=this;
+			function move() {
+				c?i++:i--;
+				console.log(i);
+				oThis.disabled=true;
+				var block=new Block_soprt(box2,arr1[i],move);		
+				if (i==arr1.length||i<0) {
+					clearInterval(block.timer);
+					c=!c;
+					oThis.innerHTML=c?"开始运动":"原路返回";
+					oThis.disabled=false;	
+				}	
+			}
+			move();
+		}
+	</script>
+</body>
+</html>
