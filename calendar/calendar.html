@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>日历</title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		#content{
+			position: absolute;
+			left: 30%;
+		}
+		table{
+			background-color: #7C7B7B;
+			opacity: 0.9;
+			border-collapse: collapse;
+			text-align: center;
+			color: white;
+			width: 100%;
+		}
+		td,th{
+			width: 14%;
+			height: 50px;
+			border:1px black solid;
+			opacity: 1;
+		}
+		.show:hover,#jian:hover,#jia:hover{
+			cursor: pointer;
+			background-color: #5A4D4D;
+		}
+		.other{
+			color:#B0AFAF;
+		}
+		#text{
+			font-family:SimSun;
+			font-size: 20px;
+			font-weight:bold;
+			margin: 10px;
+		}
+		#explan{
+			margin-top: 50px;
+		}
+	</style>
+</head>
+<body>
+	<div id="content">
+		<table id="box" >
+			<thead>
+	    		<tr>
+	    			<th id="jian"><<</th>
+	      			<th>
+	      				<input type="text" value="2017" style="width: 50px" id="year">
+	      			</th>
+	      			<th>年</th>
+	     		 	<th id="month_1">
+	     		 		<select name="" id="month">
+	     		 			<option value="1">1</option>
+	     		 			<option value="2">2</option>
+	     		 			<option value="3">3</option>
+	     		 			<option value="4">4</option>
+	     		 			<option value="5">5</option>
+	     		 			<option value="6">6</option>
+	     		 			<option value="7">7</option>     		 			
+	     		 			<option value="8">8</option>
+	     		 			<option value="9">9</option>
+	     		 			<option value="10">10</option>    
+							<option value="11">11</option>
+	     		 			<option value="12">12</option>       		 			 		 			
+	     		 		</select>
+	     		 	</th>
+	     		 	<th>月</th>
+	     		 	<th id="animal">鸡</th>
+	     		 	<th id="jia">>></th>
+	     		 	
+	    		</tr>
+	    		<tr>
+	    			<td>一</td>
+	    			<td>二</td>
+	    			<td>三</td>
+	    			<td>四</td>
+	    			<td>五</td>
+	    			<td>六</td>
+	    			<td>日</td>
+	    		</tr>
+	  		</thead>
+			<tbody>	
+			</tbody>
+		</table>
+		<p id="text"></p>
+		<div id="explan">
+			<ol>
+				<li><h2>说明</h2></li>
+				<li>具备日历基本功能，日期没有错误，能查看阴历阳历以及节气</li>
+				<li>农历是从网上找到一个大神的插件，从1900-2100年</li>
+				<li>点击表头左右两侧可以增减月份</li>
+				<li>可以输入年份，只能是1900-2100之间的数字，可以选择月份</li>
+				<li>点击日历中当月日期可在下方输出详细信息</li>
+				<li>低于1900年，高于2100年，增减按钮无法使用</li>
+			</ol>
+		</div>
+	</div>
+	<script type="text/javascript" src="lunar calendar and solar calendar.js"></script>
+	<script type="text/javascript">
+		var box=document.getElementById('box');
+		var box1=box.getElementsByTagName('tbody')[0];
+  		var jia=document.getElementById('jia');
+	    var jian=document.getElementById('jian');
+	    var month=document.getElementById('month');
+	    var year=document.getElementById('year');
+	    var animal=document.getElementById('animal');		
+		var text=document.getElementById('text');
+	    var oTd=box1.getElementsByClassName('show');
+
+		var a=new Date();
+		//获取年，月，日，星期
+		var aYear=a.getFullYear();
+		var aMonth=a.getMonth();
+		var aDate=a.getDate();
+		var aDay=a.getDay();
+		
+		year_month();
+		//获取本月天数，本月第一天，上月天数
+		function year_month() {
+			var days=new Date(aYear,aMonth+1,0).getDate();
+			var nDay=new Date(aYear,aMonth,1).getDay();
+			var preDays=new Date(aYear,aMonth,0).getDate();
+
+			var html="<tr>";
+			var num=0;
+			//周一作为每周第一天
+			if (nDay==0) {
+				nDay=7;
+			}
+			//获取上月在本月出现的最后几天
+			var b=preDays-nDay+2;
+			for(var j=1;j<nDay;j++){
+				html+="<td class='other'>"+ b++ +"</td>";
+				num++;
+			}		
+			//填充日历
+		    for(var i=1;i<=days;i++){
+		    	html+="<td class='show'>"+i+" "+calendar.solar2lunar(aYear,aMonth+1,i).IDayCn+" "+calendar.solar2lunar(aYear,aMonth+1,i).Term+"</td>";
+		    	num++;
+		    	//用下月的前几天填充最后几天
+				if (i==days) {
+		    		var c=7-num+1;
+		    		for(var k=1;k<c;k++){
+		    			html+="<td class='other'>"+ k +"</td>";
+		    		}
+		    		
+		    	}	  
+		    	//大于七天另起一行  	
+		    	if (num>6) {
+		    		num=0;
+		    		html+="</tr><tr>";
+		    	}
+		    }
+		    box1.innerHTML=html;
+		}
+		//确定本月月份
+	 	month.getElementsByTagName('option')[aMonth].selected="selected";
+	 	//月份选择
+	 	month.onchange=function() {
+	 		var val = month.options[month.selectedIndex].value;
+	 		aMonth=val-1;
+	 		animal.innerHTML=calendar.solar2lunar(aYear,aMonth,aDate).Animal;
+			year_month();
+			td_click();	 		
+	 	}
+	 	//年份输入
+	 	year.onchange=function() {
+			var reg=/^\d{4}$/;
+			if (reg.test(this.value)&&(this.value<=2100)&&(this.value>=1900)) {
+				aYear=this.value;
+				animal.innerHTML=calendar.solar2lunar(aYear,aMonth,aDate).Animal;
+				year_month();
+				td_click();					
+			}else{
+				alert("请输入1900-2100范围的年份!");
+			} 		
+	 	}
+	 	//减少一个月
+		jian.onclick=function() {
+			if (year.value<=1900&&month.value<=4) {
+				alert(1);
+			}else{
+				if (aMonth>0) {
+		    		aMonth--;
+		    	}else{
+		    		aMonth=11;
+		    		aYear--;
+		    	} 					
+			}
+			month.value=aMonth+1;
+			year.value=aYear;
+			animal.innerHTML=calendar.solar2lunar(aYear,aMonth,aDate).Animal;
+			year_month();
+			td_click();
+		}	
+	   //增加一个月
+		jia.onclick=function() {
+			if (year.value>=2100&&(month.value=12)) {
+				alert(2);
+			}else{
+				if (aMonth<11) {
+		    		aMonth++;
+		    	}else{
+		    		aMonth=0;
+		    		aYear++;
+	    		}				
+			}
+			month.value=aMonth+1;
+			year.value=aYear;
+			animal.innerHTML=calendar.solar2lunar(aYear,aMonth,aDate).Animal;
+			year_month();
+			td_click();
+	    }
+   		//输出今天日期
+	    text.innerHTML="今天："+aYear+"年 "+(aMonth+1)+"月 "+aDate+"日 "+calendar.solar2lunar(aYear,aMonth+1,aDate).gzYear+calendar.solar2lunar(aYear,aMonth+1,aDate).Animal+"年 "+calendar.solar2lunar(aYear,aMonth+1,aDate).gzMonth+"月 "+calendar.solar2lunar(aYear,aMonth+1,aDate).gzDay+"日 "+"农历 "+calendar.solar2lunar(aYear,aMonth+1,aDate).IMonthCn+" "+calendar.solar2lunar(aYear,aMonth+1,aDate).IDayCn+"日 "+calendar.solar2lunar(aYear,aMonth+1,aDate).Term;
+	    //点击日历，输出该日期
+	    function td_click() {  
+		    for(var n=0;n<oTd.length;n++){
+		    	oTd[n].onclick=function() {
+		    		text.innerHTML=aYear+"年 "+(aMonth+1)+"月 "+parseInt(this.innerHTML)+"日 "+calendar.solar2lunar(aYear,aMonth+1,aDate).gzYear+calendar.solar2lunar(aYear,aMonth+1,aDate).Animal+"年 "+calendar.solar2lunar(aYear,aMonth+1,aDate).gzMonth+"月 "+calendar.solar2lunar(aYear,aMonth+1,parseInt(this.innerHTML)).gzDay+"日 "+"农历 "+calendar.solar2lunar(aYear,aMonth+1,aDate).IMonthCn+" "+calendar.solar2lunar(aYear,aMonth+1,parseInt(this.innerHTML)).IDayCn+"日 "+calendar.solar2lunar(aYear,aMonth+1,parseInt(this.innerHTML)).Term;
+		    	}
+		    }
+	    }
+	    td_click();
+	</script>
+</body>
+</html>
