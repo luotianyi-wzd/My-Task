@@ -51,7 +51,7 @@
 	    		<tr>
 	    			<th id="jian"><<</th>
 	      			<th>
-	      				<input type="text" value="2017" style="width: 50px" id="year">
+	      				<input type="text" value="2018" style="width: 50px" id="year">
 	      			</th>
 	      			<th>年</th>
 	     		 	<th id="month_1">
@@ -161,6 +161,7 @@
 		}
 		//确定本月月份
 	 	month.getElementsByTagName('option')[aMonth].selected="selected";
+	 	year.value=aYear;
 	 	//月份选择
 	 	month.onchange=function() {
 	 		var val = month.options[month.selectedIndex].value;
