@@ -17,9 +17,9 @@
 		}
 
 		function click() {
-			var username=document.getElementById('username').value;
-			var word=document.getElementById('word').value;
-			var box=document.getElementById('box');
+			var userName=document.getElementById('username').value;
+			var passWord=document.getElementById('word').value;
+			//var box=document.getElementById('box');
 			var xhr;
 
 			if (window.XMLHttpRequest) {
@@ -28,7 +28,7 @@
 				xhr=new ActiveXObject("Microsoft.XMLHTTP");
 			}
 
-			xhr.open("GET","Get.aspx",true);
+			xhr.open("GET","Get.aspx?name="+userName+"&passWord="+passWord,true);
 			xhr.send(null);
 
 			xhr.onreadystatechange=function() {
